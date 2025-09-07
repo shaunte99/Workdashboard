@@ -193,4 +193,65 @@ html,body{height:100%;margin:0;background:var(--bg);font-size:14px;color:#1f2933
   font-size: 13px;
   color: var(--muted);
 }
+/* Mobile layout */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    left: -250px; /* hide off-screen */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #fff; /* match your theme */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  /* Overlay when sidebar is open */
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 900;
+  }
+
+  .overlay.active {
+    display: block;
+  }
+
+  /* Hamburger button */
+  .hamburger {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 1.8rem;
+    z-index: 1100;
+    cursor: pointer;
+  }
+
+  /* Main content */
+  .main-content {
+    padding: 80px 20px 20px 20px; /* give space for hamburger */
+    transition: filter 0.3s ease;
+  }
+
+  .main-content.blur {
+    filter: blur(2px);
+  }
+}
+
 
