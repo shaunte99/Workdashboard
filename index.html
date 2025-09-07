@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Poppie's Professional Dashboard</title>
+
+  <!-- Use a neutral corporate font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">PW</div>
+        <div>
+          <div class="brand-title">Poppie's Dashboard</div>
+          <div class="brand-sub">Operations & Hours</div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <button class="menu-btn active" data-view="overview">Overview</button>
+        <button class="menu-btn" data-view="workers">Workers</button>
+        <button class="menu-btn" data-view="tasks">Tasks</button>
+        <button class="menu-btn" data-view="reports">Reports</button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <button id="exportCsv" class="secondary">Export CSV</button>
+        <button id="resetData" class="danger">Reset</button>
+        <small class="note">Prototype storage: local only. Ready to connect to Google Sheets.</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>Operations Dashboard</h1>
+          <p class="muted">Accurate hours • Clean reports • Task progress</p>
+        </div>
+        <div class="user-meta">
+          <div class="user-name">Poppie — Manager</div>
+          <div class="user-role muted">For internal use</div>
+        </div>
+      </header>
+
+      <section id="view-overview" class="view visible">
+        <div class="grid">
+          <div class="card">
+            <div class="card-head">
+              <h3>Poppie's Time</h3>
+              <small class="muted">Personal hours for reporting</small>
+            </div>
+            <div class="card-body">
+              <div class="clock-controls">
+                <button id="poppieClockIn" class="primary small">Clock In</button>
+                <button id="poppieClockOut" class="ghost small">Clock Out</button>
+                <div class="status" id="poppieStatus">Status: <span id="poppieStatusText">OUT</span></div>
+              </div>
+              <div class="log-wrap">
+                <table class="log-table">
+                  <thead><tr><th>Date</th><th>In</th><th>Out</th><th>Hours</th></tr></thead>
+                  <tbody id="poppieLog"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>Workers Summary</h3>
+              <small class="muted">Quick view of today + week</small>
+            </div>
+            <div class="card-body">
+              <div class="summary-row">
+                <div class="summary-item">
+                  <div class="label muted">Total Hours Today</div>
+                  <div id="totalToday" class="big">—</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label muted">Total Hours This Week</div>
+                  <div id="totalWeek" class="big">—</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label muted">Active Workers</div>
+                  <div id="workerCount" class="big">—</div>
+                </div>
+              </div>
+
+              <div class="mini-actions">
+                <button id="addWorkerBtn" class="secondary">+ Add Worker</button>
+                <button id="compactReport" class="ghost">Compact Report</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-wide">
+            <div class="card-head">
+              <h3>Task Progress</h3>
+              <small class="muted">Daily tasks and completion rate</small>
+            </div>
+            <div class="card-body">
+              <div class="task-controls">
+                <input id="taskText" placeholder="Create new task (press Add)" />
+                <select id="taskScope">
+                  <option value="today">Today</option>
+                  <option value="week">This Week</option>
+                </select>
+                <button id="addTask" class="primary small">Add</button>
+              </div>
+
+              <div class="task-grid">
+                <div class="task-list-wrap">
+                  <h4>Today's Tasks <span id="taskCount" class="muted"></span></h4>
+                  <ul id="taskList" class="task-list"></ul>
+                </div>
+
+                <div class="task-progress">
+                  <h4>Progress</h4>
+                  <div class="progress-outer">
+                    <div id="progressFill" class="progress-fill"></div>
+                  </div>
+                  <div class="progress-meta muted" id="progressMeta">0 / 0 tasks • 0%</div>
+
+                  <div class="task-actions">
+                    <button id="clearCompleted" class="ghost small">Clear Completed</button>
+                    <button id="markAllDone" class="secondary small">Mark All Done</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-wide">
+            <div class="card-head">
+              <h3>Detailed Worker Logs</h3>
+              <small class="muted">Edit worker names inline. Use Clock In / Out for each worker.</small>
+            </div>
+            <div class="card-body">
+              <div class="workers-toolbar">
+                <div class="muted">Workers</div>
+                <div><button id="resetWorkers" class="ghost small">Reset Workers</button></div>
+              </div>
+
+              <div class="workers-table-wrap">
+                <table class="workers-table">
+                  <thead>
+                    <tr><th style="min-width:220px">Worker</th><th>Status</th><th>Last In</th><th>Last Out</th><th>Today Hours</th><th>Actions</th></tr>
+                  </thead>
+                  <tbody id="workersTbody"></tbody>
+                </table>
+              </div>
+
+              <div class="log-table-wrap">
+                <h4 class="muted">Weekly Totals</h4>
+                <table class="log-table small">
+                  <thead><tr><th>Worker</th><th>This Week (h)</th></tr></thead>
+                  <tbody id="weeklyTotals"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- end grid -->
+      </section>
+
+      <!-- Workers detail view -->
+      <section id="view-workers" class="view">
+        <div class="panel-wrap">
+          <h2>Workers Management</h2>
+          <p class="muted">Add, remove, or rename workers. Clock in/out from the main grid for operations.</p>
+          <div class="workers-edit">
+            <button id="addWorkerBtn2" class="primary small">+ Add Worker</button>
+            <button id="removeEmpty" class="ghost small">Remove Empty Names</button>
+          </div>
+
+          <div class="workers-edit-table">
+            <table class="workers-table">
+              <thead><tr><th>Worker</th><th>Actions</th></tr></thead>
+              <tbody id="workersManage"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tasks view -->
+      <section id="view-tasks" class="view">
+        <div class="panel-wrap">
+          <h2>Task Manager</h2>
+          <p class="muted">Full task list and weekly view.</p>
+
+          <div class="full-task-grid">
+            <div>
+              <h4>All Tasks</h4>
+              <ul id="allTasks" class="task-list"></ul>
+            </div>
+            <div>
+              <h4>Weekly Snapshot</h4>
+              <div id="weeklySnapshot" class="muted">No tasks for the week</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reports view -->
+      <section id="view-reports" class="view">
+        <div class="panel-wrap">
+          <h2>Reports</h2>
+          <p class="muted">Export or view compact reports.</p>
+          <div id="reportContent" class="muted">Use Export CSV on the sidebar to get raw logs.</div>
+        </div>
+      </section>
+
+      <footer class="footer muted">Prototype • Local storage • Ready for Google Sheets integration</footer>
+    </main>
+  </div>
+
+  <script src="scripts/scripts.js"></script>
+</body>
+</html>
