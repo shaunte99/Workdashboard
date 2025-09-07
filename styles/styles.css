@@ -109,3 +109,55 @@ html,body{height:100%;margin:0;background:var(--bg);font-size:14px;color:#1f2933
   .main{padding:0}
   .left-col, .right-col{width:100%}
 }
+
+/* Mobile specific improvements for phones */
+@media (max-width:600px){
+  html, body{font-size:13px}
+  
+  /* Sidebar becomes top bar */
+  .sidebar{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    height:auto;
+    flex-direction:row;
+    justify-content:space-between;
+    padding:10px;
+    z-index:1000;
+  }
+  
+  .brand{gap:8px;margin-bottom:0}
+  .logo{width:36px;height:36px;font-size:14px}
+  .brand-title{font-size:14px}
+  .brand-sub{font-size:10px}
+  
+  .menu{flex-direction:row;gap:6px;overflow-x:auto}
+  .menu-btn{padding:6px 8px;font-size:12px}
+  
+  .main{padding:8px 12px}
+  .topbar{flex-direction:column;align-items:flex-start;padding:12px}
+  .topbar h1{font-size:16px}
+  
+  .grid{grid-template-columns:1fr;gap:12px}
+  .card{padding:12px}
+  .card-head{flex-direction:column;align-items:flex-start;gap:6px}
+  
+  .task-grid{flex-direction:column}
+  .task-controls{flex-direction:column;gap:6px}
+  .task-controls input{width:100%}
+  
+  .workers-toolbar{flex-direction:column;align-items:flex-start;gap:8px}
+  .left-col, .right-col{width:100%}
+  
+  .workers-table th, .workers-table td,
+  .log-table th, .log-table td{font-size:12px;padding:6px}
+  
+  .event-controls, .orders-panel .orders-controls{
+    flex-direction:column;
+    gap:6px;
+  }
+  
+  .progress-outer{height:12px}
+  .footer{padding:12px;font-size:12px}
+}
