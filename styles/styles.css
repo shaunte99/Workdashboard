@@ -161,3 +161,36 @@ html,body{height:100%;margin:0;background:var(--bg);font-size:14px;color:#1f2933
   .progress-outer{height:12px}
   .footer{padding:12px;font-size:12px}
 }
+/* Topbar layout fixes */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hamburger {
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.hamburger:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.topbar-text h1 {
+  margin: 0;
+  font-size: 18px;
+  color: #0f1724;
+}
+
+.topbar-text p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
