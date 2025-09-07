@@ -1,11 +1,11 @@
-/* Corporate, professional styling for Poppie's Dashboard */
+/* Corporate professional styling — extended for events & orders */
 :root{
   --bg: #f4f6f8;
   --card: #ffffff;
   --muted: #75808a;
-  --accent: #3b82f6; /* professional blue */
+  --accent: #3b82f6;
   --accent-dark: #2b6edb;
-  --glass: rgba(255,255,255,0.7);
+  --glass: rgba(255,255,255,0.85);
   --radius: 12px;
   --shadow: 0 8px 24px rgba(32,38,47,0.06);
   --success: #16a34a;
@@ -66,7 +66,7 @@ html,body{height:100%;margin:0;background:var(--bg);font-size:14px;color:#1f2933
 .ghost{background:transparent;border:1px solid rgba(16,24,32,0.06);padding:8px;border-radius:8px}
 .secondary{background:#f1f5f9;border-radius:8px;padding:8px;border:1px solid rgba(16,24,32,0.04)}
 
-/* Workers table */
+/* Tables */
 .workers-table, .log-table {width:100%;border-collapse:collapse;margin-top:8px}
 .workers-table th, .workers-table td, .log-table th, .log-table td {padding:10px;border-bottom:1px solid rgba(16,24,32,0.04);text-align:left;font-size:13px}
 .workers-table thead th{font-weight:700;color:#111827}
@@ -79,6 +79,14 @@ html,body{height:100%;margin:0;background:var(--bg);font-size:14px;color:#1f2933
 .task-list{list-style:none;padding:0;margin-top:8px}
 .task-list li{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;border:1px solid rgba(16,24,32,0.04);margin-bottom:8px}
 
+/* Events */
+.event-controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.event-controls input, .event-controls select{padding:8px;border:1px solid rgba(16,24,32,0.06);border-radius:8px}
+
+/* Orders */
+.orders-panel .orders-controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.orders-panel input, .orders-panel select{padding:8px;border:1px solid rgba(16,24,32,0.06);border-radius:8px}
+
 /* Progress */
 .progress-outer{width:100%;height:16px;background:#eef2ff;border-radius:8px;overflow:hidden;margin-top:12px}
 .progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-dark));transition:width .4s ease}
@@ -86,6 +94,9 @@ html,body{height:100%;margin:0;background:var(--bg);font-size:14px;color:#1f2933
 /* layout tweaks */
 .card-wide{grid-column:1 / -1}
 .workers-toolbar{display:flex;justify-content:space-between;align-items:center}
+.left-col{width:60%}
+.right-col{width:35%}
+.small-card{padding:12px;border-radius:10px;background:#fbfdff;border:1px solid rgba(16,24,32,0.04)}
 
 /* Footer */
 .footer{padding:16px 28px;color:var(--muted);font-size:13px}
@@ -96,4 +107,5 @@ html,body{height:100%;margin:0;background:var(--bg);font-size:14px;color:#1f2933
   .sidebar{display:none}
   .app{flex-direction:column}
   .main{padding:0}
+  .left-col, .right-col{width:100%}
 }
