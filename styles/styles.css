@@ -1,178 +1,160 @@
 /* ==========================
    Poppie's Dashboard Styles
+   Clean, mobile-first and professional
    ========================== */
 
-/* Root Variables */
-:root {
-  --bg: #f4f6f8;
-  --card: #ffffff;
-  --muted: #75808a;
-  --accent: #3b82f6;
-  --accent-dark: #2b6edb;
-  --glass: rgba(255,255,255,0.85);
-  --radius: 12px;
-  --shadow: 0 8px 24px rgba(32,38,47,0.06);
-  --success: #16a34a;
-  --danger: #ef4444;
-  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color-scheme: light;
+:root{
+  --bg:#f4f6f8;
+  --card:#fff;
+  --muted:#75808a;
+  --accent:#3b82f6;
+  --accent-dark:#2b6edb;
+  --radius:12px;
+  --shadow:0 8px 24px rgba(32,38,47,0.06);
+  --success:#16a34a;
+  --danger:#ef4444;
+  font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
 }
 
-/* Global Resets */
-* { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; font-size: 14px; color: #1f2933; background: var(--bg); }
-ul { list-style: none; padding: 0; margin: 0; }
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:#1f2933;font-size:15px}
+a{color:inherit;text-decoration:none}
 
-/* ==========================
-   App Layout
-   ========================== */
-.app { display: flex; min-height: 100vh; }
-.main { flex: 1; display: flex; flex-direction: column; padding: 0; }
-
-/* ==========================
-   Sidebar
-   ========================== */
-.sidebar {
-  width: 260px;
-  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
-  border-right: 1px solid rgba(16,24,32,0.04);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  transition: left 0.3s ease;
-  z-index: 1000;
-}
-.brand { display: flex; gap: 12px; align-items: center; margin-bottom: 6px; }
-.logo { width: 46px; height: 46px; background: var(--accent); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-.brand-title { font-weight: 700; }
-.brand-sub { font-size: 12px; color: var(--muted); }
+/* App layout */
+.app{display:flex;min-height:100vh}
+.sidebar{width:260px;background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);border-right:1px solid rgba(16,24,32,0.04);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:18px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:46px;height:46px;background:var(--accent);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.brand-title{font-weight:700}
+.brand-sub{font-size:12px;color:var(--muted)}
 
 /* Menu */
-.menu { display: flex; flex-direction: column; gap: 8px; overflow-x: hidden; }
-.menu-btn { background: transparent; border: 0; text-align: left; padding: 10px 12px; border-radius: 8px; font-weight: 600; color: #24303a; cursor: pointer; white-space: nowrap; }
-.menu-btn.active { background: linear-gradient(90deg, var(--accent), var(--accent-dark)); color: white; box-shadow: 0 8px 24px rgba(59,130,246,0.12); }
-.sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; }
-.secondary { background: #eef6ff; color: var(--accent-dark); border: none; padding: 8px; border-radius: 8px; }
-.danger { background: var(--danger); color: white; border: none; padding: 8px; border-radius: 8px; }
-.ghost { background: transparent; border: 1px solid rgba(32,38,47,0.06); padding: 8px; border-radius: 8px; }
+.menu{display:flex;flex-direction:column;gap:8px}
+.menu-btn{background:transparent;border:0;text-align:left;padding:10px 12px;border-radius:8px;font-weight:600;color:#24303a;cursor:pointer}
+.menu-btn.active{background:linear-gradient(90deg,var(--accent),var(--accent-dark));color:#fff;box-shadow:0 8px 24px rgba(59,130,246,0.12)}
+.sidebar-foot{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.secondary{background:#eef6ff;color:var(--accent-dark);border:none;padding:8px;border-radius:8px}
+.danger{background:var(--danger);color:#fff;border:none;padding:8px;border-radius:8px}
+.ghost{background:transparent;border:1px solid rgba(32,38,47,0.06);padding:8px;border-radius:8px}
+
+/* Main */
+.main{flex:1;display:flex;flex-direction:column}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:22px 28px 8px 28px}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.topbar-text h1{margin:0;font-size:18px}
+.topbar-text p{margin:0;color:var(--muted);font-size:13px}
+.user-meta{display:flex;flex-direction:column;align-items:flex-end}
+.user-name{font-weight:600}
+.user-role{font-size:13px;color:var(--muted)}
+.hamburger{font-size:22px;background:transparent;border:none;cursor:pointer;padding:6px 10px;border-radius:6px;display:none}
+.hamburger:hover{background:rgba(0,0,0,0.04)}
+
+/* Views & grid */
+.view{padding:18px 28px 40px 28px;display:none}
+.view.visible{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+/* Cards */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column}
+.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.card-body{flex:1}
+.card-wide{grid-column:1 / -1}
+
+/* summaries */
+.summary-row{display:flex;gap:12px}
+.summary-item{flex:1;background:linear-gradient(180deg,#fff,#fbfdff);padding:12px;border-radius:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+.label{font-size:12px}
+.big{font-size:20px;font-weight:700;margin-top:6px}
+
+/* Buttons & inputs */
+.primary{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+.small{padding:6px 8px;font-size:13px}
+input,select,textarea{padding:8px;border:1px solid rgba(16,24,32,0.06);border-radius:8px}
+.task-controls input{flex:1}
+
+/* tables */
+.log-table, .workers-table{width:100%;border-collapse:collapse}
+.log-table th, .log-table td, .workers-table th, .workers-table td{padding:10px;border-bottom:1px solid rgba(16,24,32,0.04);text-align:left;font-size:13px}
+.workers-table thead th{font-weight:700;color:#111827}
+
+/* Task list */
+.task-grid{display:flex;gap:18px}
+.task-list{list-style:none;padding:0;margin-top:8px}
+.task-list li{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;border:1px solid rgba(16,24,32,0.04);margin-bottom:8px}
+.task-controls{display:flex;gap:8px}
+
+/* events/orders */
+.event-controls,.orders-panel .orders-controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.orders-panel input,.orders-panel select,.event-controls input,.event-controls select{width:100%;max-width:100%}
+
+/* progress */
+.progress-outer{width:100%;height:16px;background:#eef2ff;border-radius:8px;overflow:hidden;margin-top:12px}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-dark));transition:width .4s ease}
+
+/* columns */
+.left-col{width:60%}
+.right-col{width:35%}
+.small-card{padding:12px;border-radius:10px;background:#fbfdff;border:1px solid rgba(16,24,32,0.04)}
+
+/* footer */
+.footer{padding:16px 28px;color:var(--muted);font-size:13px}
+
+/* muted helper */
+.muted{color:var(--muted);font-size:13px}
+
+/* overlay */
+.overlay{display:none}
 
 /* ==========================
-   Topbar
+   MOBILE / TABLET
    ========================== */
-.topbar { display: flex; justify-content: space-between; align-items: center; padding: 22px 28px 8px 28px; }
-.topbar-left { display: flex; align-items: center; gap: 12px; }
-.topbar-text h1 { margin: 0; font-size: 18px; color: #0f1724; }
-.topbar-text p { margin: 0; font-size: 13px; color: var(--muted); }
-.user-meta { display: flex; flex-direction: column; align-items: flex-end; }
-.user-name { font-weight: 600; }
-.user-role { font-size: 13px; color: var(--muted); }
-.hamburger { font-size: 22px; background: transparent; border: none; cursor: pointer; padding: 6px 10px; border-radius: 6px; transition: background 0.2s; display: none; }
-.hamburger:hover { background: rgba(0,0,0,0.05); }
-
-/* ==========================
-   Grid & Cards
-   ========================== */
-.view { padding: 18px 28px 40px 28px; display: none; }
-.view.visible { display: block; }
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px; display: flex; flex-direction: column; }
-.card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.card-body { flex: 1; }
-.card-wide { grid-column: 1 / -1; }
-
-/* Summary Cards */
-.summary-row { display: flex; gap: 12px; }
-.summary-item { flex: 1; background: linear-gradient(180deg, #fff, #fbfdff); padding: 12px; border-radius: 10px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
-.label { font-size: 12px; }
-.big { font-size: 20px; font-weight: 700; margin-top: 6px; }
-
-/* Buttons & Inputs */
-.primary { background: var(--accent); color: white; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; }
-.small { padding: 6px 8px; font-size: 13px; }
-input, select { padding: 8px; border: 1px solid rgba(16,24,32,0.06); border-radius: 8px; }
-.task-controls input { flex: 1; }
-
-/* Tables */
-.workers-table, .log-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-.workers-table th, .workers-table td, .log-table th, .log-table td { padding: 10px; border-bottom: 1px solid rgba(16,24,32,0.04); text-align: left; font-size: 13px; }
-.workers-table thead th { font-weight: 700; color: #111827; }
-.worker-name { font-weight: 600; outline: none; background: transparent; border-radius: 6px; padding: 6px; }
-
-/* Task Grid */
-.task-grid { display: flex; gap: 18px; }
-.task-list { margin-top: 8px; }
-.task-list li { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 8px; border: 1px solid rgba(16,24,32,0.04); margin-bottom: 8px; }
-.task-controls { display: flex; gap: 8px; }
-
-/* Events & Orders */
-.event-controls, .orders-panel .orders-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-.orders-panel input, .orders-panel select, .event-controls input, .event-controls select { width: 100%; max-width: 100%; }
-
-/* Progress Bars */
-.progress-outer { width: 100%; height: 16px; background: #eef2ff; border-radius: 8px; overflow: hidden; margin-top: 12px; }
-.progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--accent-dark)); transition: width .4s ease; }
-
-/* Columns */
-.left-col { width: 60%; }
-.right-col { width: 35%; }
-.small-card { padding: 12px; border-radius: 10px; background: #fbfdff; border: 1px solid rgba(16,24,32,0.04); }
-
-/* Footer */
-.footer { padding: 16px 28px; color: var(--muted); font-size: 13px; }
-
-/* Muted Text */
-.muted { color: var(--muted); font-size: 13px; }
-
-/* ==========================
-   Mobile Responsive
-   ========================== */
-@media (max-width: 768px) {
-  body { overflow-x: hidden; font-size: 13px; }
-
-  /* Sidebar */
-  .sidebar { position: fixed; left: -260px; top: 0; height: 100%; width: 260px; flex-direction: column; padding: 20px; box-shadow: 2px 0 12px rgba(0,0,0,0.12); transition: left 0.3s ease; z-index: 1000; }
-  .sidebar.active { left: 0; }
-  .menu { flex-direction: column; gap: 8px; overflow-y: auto; }
-  .menu-btn { font-size: 13px; padding: 8px 10px; }
-
-  /* Overlay */
-  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 900; }
-  .overlay.active { display: block; }
-
-  /* Hamburger */
-  .hamburger { display: block; position: fixed; top: 15px; left: 15px; z-index: 1100; }
-
-  /* Main content */
-  .main { padding: 16px; margin-left: 0 !important; }
-
-  /* Grid & Cards */
-  .grid { grid-template-columns: 1fr; gap: 12px; }
-  .card, .card-wide { width: 100%; padding: 12px; }
-  .card-head { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .task-grid { flex-direction: column; gap: 8px; }
-  .task-controls { flex-direction: column; gap: 8px; }
-
-  /* Tables & Summaries */
-  .summary-row { flex-direction: column; gap: 8px; }
-  .workers-table th, .workers-table td, .log-table th, .log-table td { font-size: 12px; padding: 6px; }
-
-  /* Columns */
-  .left-col, .right-col { width: 100%; }
-
-  /* Inputs */
-  .event-controls input, .event-controls select, .orders-panel input, .orders-panel select, .task-controls input { width: 100%; }
-
-  /* Progress bar */
-  .progress-outer { height: 12px; }
-
-  /* Topbar */
-  .topbar { flex-direction: column; align-items: flex-start; padding: 12px 16px; }
-  .topbar-left { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-  .topbar h1 { font-size: 16px; }
+@media (max-width: 992px) {
+  .grid{grid-template-columns:1fr}
+  .left-col,.right-col{width:100%}
+  .sidebar{display:none} /* hidden on small tablets; open via hamburger */
+  .hamburger{display:block}
+  .main{padding:0}
 }
 
+/* Unified mobile behavior <=768 */
+@media (max-width:768px){
+  body{overflow-x:hidden;font-size:14px}
 
+  /* sidebar off-canvas */
+  .sidebar{
+    position:fixed;left:-260px;top:0;height:100%;width:260px;padding:20px;box-shadow:2px 0 12px rgba(0,0,0,0.12);transition:left 0.28s ease;background:var(--card);z-index:1100;display:flex;flex-direction:column;
+  }
+  .sidebar.active{left:0}
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.32);z-index:1050}
+  .overlay.active{display:block}
 
+  .menu{flex-direction:column;gap:8px;overflow-y:auto}
+  .menu-btn{font-size:14px;padding:8px;border-radius:8px}
 
+  /* topbar tweaks */
+  .topbar{flex-direction:column;align-items:flex-start;padding:12px 16px}
+  .topbar-left{width:100%;display:flex;justify-content:space-between;align-items:center}
+  .topbar-text h1{font-size:16px}
+  .topbar-text p{font-size:12px}
+
+  /* content */
+  .main{padding:16px;margin-left:0 !important}
+  .view{padding:12px}
+  .card, .card-wide{padding:12px}
+  .card-head{flex-direction:column;align-items:flex-start;gap:6px}
+  .task-grid{flex-direction:column}
+  .task-controls{flex-direction:column}
+
+  .summary-row{flex-direction:column}
+  .workers-table th,.workers-table td,.log-table th,.log-table td{font-size:12px;padding:6px}
+
+  .progress-outer{height:12px}
+}
+
+/* small phones tighten */
+@media (max-width:420px){
+  .topbar-text h1{font-size:15px}
+  .logo{width:40px;height:40px}
+  .menu-btn{padding:8px 10px;font-size:13px}
+  .hamburger{font-size:20px}
+}
