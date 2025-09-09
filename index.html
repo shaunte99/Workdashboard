@@ -1,278 +1,148 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Poppie's Ops — Events & Teams</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poppie's Event Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="app">
-
-    <!-- Overlay for mobile sidebar -->
-    <div id="overlay" class="overlay" aria-hidden="true"></div>
-
+  <div id="dashboard">
     <!-- Sidebar -->
-    <aside class="sidebar" role="navigation" aria-label="Main navigation">
-      <div class="brand">
-        <div class="logo">PW</div>
-        <div>
-          <div class="brand-title">Poppie's Dashboard</div>
-          <div class="brand-sub">Operations & Events</div>
-        </div>
-      </div>
-
-      <nav class="menu" id="menu">
-        <button class="menu-btn active" data-view="overview">Overview</button>
-        <button class="menu-btn" data-view="workers">Workers</button>
-        <button class="menu-btn" data-view="tasks">Tasks</button>
-        <button class="menu-btn" data-view="events">Events</button>
-        <button class="menu-btn" data-view="orders">Orders</button>
-        <button class="menu-btn" data-view="reports">Reports</button>
-      </nav>
-
-      <div class="sidebar-foot">
-        <button id="exportCsv" class="secondary">Export CSV</button>
-        <button id="resetData" class="danger">Reset</button>
-        <small class="note">Local prototype • Offline (localStorage)</small>
-      </div>
+    <aside id="sidebar">
+      <h2>Poppie's Dashboard</h2>
+      <ul>
+        <li class="active">Clock-In</li>
+        <li>Tasks</li>
+        <li>Quotes</li>
+        <li>Calendar</li>
+        <li>Tracking</li>
+        <li>Moodboard</li>
+        <li>Inventory</li>
+        <li>Email</li>
+        <li>Reports</li>
+      </ul>
     </aside>
 
-    <!-- Main content -->
-    <main class="main" id="main">
-      <header class="topbar">
-        <div class="topbar-left">
-          <button id="menuToggle" class="hamburger" aria-label="Open menu">☰</button>
-          <div class="topbar-text">
-            <h1>Operations & Events</h1>
-            <p class="muted">Accurate hours · Events pipeline · Orders · Financials</p>
-          </div>
+    <!-- Main Content -->
+    <main id="mainContent">
+
+      <!-- 1. Clock-In Section -->
+      <section class="dashboard-section active" id="clockInSection">
+        <h3>Clock-In System</h3>
+        <div class="clock-container">
+          <button id="clockInBtn">Clock In</button>
+          <button id="clockOutBtn">Clock Out</button>
         </div>
-
-        <div class="user-meta">
-          <div class="user-name">Poppie — Manager</div>
-          <div class="user-role muted">Internal use</div>
-        </div>
-      </header>
-
-      <!-- Overview -->
-      <section id="view-overview" class="view visible">
-        <div class="grid">
-
-          <!-- Poppie's Time -->
-          <div class="card">
-            <div class="card-head"><h3>Poppie's Time</h3><small class="muted">Personal hours</small></div>
-            <div class="card-body">
-              <div class="clock-controls">
-                <button id="poppieClockIn" class="primary small">Clock In</button>
-                <button id="poppieClockOut" class="ghost small">Clock Out</button>
-                <div class="status" id="poppieStatus">Status: <span id="poppieStatusText">OUT</span></div>
-              </div>
-
-              <div class="log-wrap" style="margin-top:12px">
-                <table class="log-table" aria-live="polite">
-                  <thead><tr><th>Date</th><th>In</th><th>Out</th><th>Hours</th></tr></thead>
-                  <tbody id="poppieLog"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- Workers Summary -->
-          <div class="card">
-            <div class="card-head"><h3>Workers Summary</h3><small class="muted">Today & Week</small></div>
-            <div class="card-body">
-              <div class="summary-row">
-                <div class="summary-item">
-                  <div class="label muted">Total Hours Today</div>
-                  <div id="totalToday" class="big">—</div>
-                </div>
-                <div class="summary-item">
-                  <div class="label muted">Total Hours Week</div>
-                  <div id="totalWeek" class="big">—</div>
-                </div>
-                <div class="summary-item">
-                  <div class="label muted">Active Workers</div>
-                  <div id="workerCount" class="big">—</div>
-                </div>
-              </div>
-
-              <div class="mini-actions" style="margin-top:10px">
-                <button id="addWorkerBtn" class="secondary">+ Add Worker</button>
-                <button id="compactReport" class="ghost">Compact Report</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tasks -->
-          <div class="card card-wide">
-            <div class="card-head"><h3>Task Progress</h3><small class="muted">Daily & Weekly tasks</small></div>
-            <div class="card-body">
-              <div class="task-controls">
-                <input id="taskText" placeholder="Create new task for today" />
-                <select id="taskScope">
-                  <option value="today">Today</option>
-                  <option value="week">This Week</option>
-                </select>
-                <button id="addTask" class="primary small">Add</button>
-              </div>
-
-              <div class="task-grid">
-                <div class="task-list-wrap">
-                  <h4>Today's Tasks <span id="taskCount" class="muted"></span></h4>
-                  <ul id="taskList" class="task-list"></ul>
-                </div>
-
-                <div class="task-progress">
-                  <h4>Progress</h4>
-                  <div class="progress-outer"><div id="progressFill" class="progress-fill"></div></div>
-                  <div class="progress-meta muted" id="progressMeta">0 / 0 • 0%</div>
-                  <div style="margin-top:10px">
-                    <button id="clearCompleted" class="ghost small">Clear Completed</button>
-                    <button id="markAllDone" class="secondary small">Mark All Done</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Events Pipeline -->
-          <div class="card card-wide">
-            <div class="card-head"><h3>Events Pipeline</h3><small class="muted">Quick add & list</small></div>
-            <div class="card-body">
-              <div class="event-controls">
-                <input id="evtTitle" placeholder="Event title (Client / Short name)" />
-                <select id="evtType"><option>Wedding</option><option>Birthday</option><option>Corporate</option><option>Other</option></select>
-                <input id="evtDate" type="date" />
-                <input id="evtBudget" type="number" placeholder="Budget (R)" />
-                <select id="evtStatus"><option>Inquiry</option><option>Quoting</option><option>Confirmed</option><option>Planning</option><option>Completed</option></select>
-                <button id="addEvent" class="primary small">Add Event</button>
-              </div>
-
-              <div class="events-table-wrap" style="margin-top:8px;overflow:auto;">
-                <table class="log-table">
-                  <thead><tr><th>Event</th><th>Type</th><th>Date</th><th>Status</th><th>Budget</th><th>Cost</th><th>Profit</th><th>Actions</th></tr></thead>
-                  <tbody id="eventsTbody"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <h4>Workers</h4>
+        <ul id="workersList"></ul>
       </section>
 
-      <!-- Workers view -->
-      <section id="view-workers" class="view">
-        <div class="panel-wrap">
-          <h2>Workers Management</h2>
-          <p class="muted">Add, rename, clock workers in/out while on-site.</p>
-
-          <div style="margin-top:10px">
-            <button id="addWorkerBtn2" class="primary small">+ Add Worker</button>
-            <button id="removeEmpty" class="ghost small">Remove Empty Names</button>
-          </div>
-
-          <div style="margin-top:12px; overflow:auto;">
-            <table class="workers-table" id="workersTable" aria-live="polite">
-              <thead><tr><th>Worker</th><th>Status</th><th>Last In</th><th>Last Out</th><th>Hours Today</th><th>Actions</th></tr></thead>
-              <tbody id="workersTbody"></tbody>
-            </table>
-          </div>
+      <!-- 2. Tasks Section -->
+      <section class="dashboard-section" id="tasksSection">
+        <h3>Tasks</h3>
+        <div class="task-inputs">
+          <input type="text" id="taskInput" placeholder="Enter task">
+          <select id="taskPriority">
+            <option value="Normal">Normal</option>
+            <option value="Important">Important</option>
+          </select>
+          <input type="date" id="taskDeadline">
+          <button id="addTaskBtn">Add Task</button>
         </div>
+        <ul id="taskList"></ul>
       </section>
 
-      <!-- Tasks view -->
-      <section id="view-tasks" class="view">
-        <div class="panel-wrap">
-          <h2>Task Manager</h2>
-          <p class="muted">All tasks across events and personal lists</p>
-
-          <div class="full-task-grid" style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
-            <div style="flex:1;min-width:220px">
-              <h4>All Tasks</h4>
-              <ul id="allTasks" class="task-list"></ul>
-            </div>
-            <div style="flex:1;min-width:220px">
-              <h4>Event Tasks</h4>
-              <div id="eventTasksContainer" class="muted">Open an event in Events view to add/view event-specific tasks.</div>
-            </div>
-          </div>
+      <!-- 3. Quotes Section -->
+      <section class="dashboard-section" id="quotesSection">
+        <h3>Quotes</h3>
+        <div class="quote-inputs">
+          <input type="text" id="quoteClient" placeholder="Client Name">
+          <input type="text" id="quoteItem" placeholder="Item">
+          <input type="number" id="quoteQuantity" placeholder="Quantity">
+          <input type="number" id="quotePrice" placeholder="Price">
+          <button id="addQuoteBtn">Add Quote</button>
         </div>
+        <table id="quotesTable">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="quote-total">Total: $<span id="quotesTotal">0.00</span></div>
       </section>
 
-      <!-- Events view -->
-      <section id="view-events" class="view">
-        <div class="panel-wrap">
-          <h2>Events & Financials</h2>
-          <p class="muted">Manage event pipeline, budgets, per-event tasks & orders</p>
-
-          <div class="events-panel" style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
-            <div class="left-col" style="flex:1;min-width:280px">
-              <h4>Events List</h4>
-              <div style="overflow:auto">
-                <table class="log-table">
-                  <thead><tr><th>Event</th><th>Type</th><th>Date</th><th>Status</th><th>Budget</th><th>Cost</th><th>Profit</th><th>Actions</th></tr></thead>
-                  <tbody id="eventsManageTbody"></tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="right-col" style="min-width:220px">
-              <h4>Selected Event</h4>
-              <div id="selectedEventPanel" class="card small-card muted">Select an event to view tasks, orders and financials</div>
-            </div>
-          </div>
-        </div>
+      <!-- 4. Calendar Section -->
+      <section class="dashboard-section" id="calendarSection">
+        <h3>Calendar</h3>
+        <div id="calendarContainer"></div>
       </section>
 
-      <!-- Orders view -->
-      <section id="view-orders" class="view">
-        <div class="panel-wrap">
-          <h2>Orders & Inventory</h2>
-          <p class="muted">Track supplier orders per event</p>
-
-          <div class="orders-panel" style="margin-top:12px">
-            <div class="orders-controls">
-              <select id="orderEventSelect"><option value="">— Select Event —</option></select>
-              <input id="orderItem" placeholder="Item name" />
-              <input id="orderSupplier" placeholder="Supplier" />
-              <input id="orderCost" type="number" placeholder="Cost (R)" />
-              <select id="orderStatus"><option>Pending</option><option>Ordered</option><option>Delivered</option></select>
-              <button id="addOrderBtn" class="primary small">Add Order</button>
-            </div>
-
-            <div class="orders-table-wrap" style="overflow:auto;margin-top:8px">
-              <table class="log-table">
-                <thead><tr><th>Event</th><th>Item</th><th>Supplier</th><th>Cost</th><th>Status</th><th>Actions</th></tr></thead>
-                <tbody id="ordersTbody"></tbody>
-              </table>
-            </div>
-
-            <div class="orders-summary" style="margin-top:12px">
-              <h4>Order Progress</h4>
-              <div class="progress-outer"><div id="ordersProgressFill" class="progress-fill"></div></div>
-              <div id="ordersProgressMeta" class="muted">0 / 0 delivered</div>
-            </div>
-          </div>
-        </div>
+      <!-- 5. Tracking Section -->
+      <section class="dashboard-section" id="trackingSection">
+        <h3>Event Tracking</h3>
+        <div id="trackingList"></div>
       </section>
 
-      <!-- Reports view -->
-      <section id="view-reports" class="view">
-        <div class="panel-wrap">
-          <h2>Reports</h2>
-          <p class="muted">Export logs and event financial summaries</p>
-          <div id="reportContent" class="muted" style="margin-top:8px">Use Export CSV on the sidebar for raw logs.</div>
-          <div id="eventFinancialSummary" style="margin-top:12px"></div>
+      <!-- 6. Moodboard Section -->
+      <section class="dashboard-section" id="moodboardSection">
+        <h3>Moodboard</h3>
+        <div class="moodboard-controls">
+          <input type="text" id="moodTitle" placeholder="Moodboard Title">
+          <button id="addMoodBtn">Add Moodboard</button>
         </div>
+        <div id="moodboardsContainer"></div>
       </section>
 
-      <footer class="footer muted">Prototype • Local storage • Ready for Google Sheets integration</footer>
+      <!-- 7. Inventory Section -->
+      <section class="dashboard-section" id="inventorySection">
+        <h3>Inventory</h3>
+        <div class="inventory-controls">
+          <input type="text" id="inventoryItem" placeholder="Item Name">
+          <input type="number" id="inventoryStock" placeholder="Stock">
+          <button id="addInventoryBtn">Add Item</button>
+        </div>
+        <table id="inventoryTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Stock</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+
+      <!-- 8. Email & Inbox Section -->
+      <section class="dashboard-section" id="emailSection">
+        <h3>Email & Inbox</h3>
+        <div class="email-controls">
+          <input type="email" id="emailTo" placeholder="To">
+          <input type="text" id="emailSubject" placeholder="Subject">
+          <button id="sendEmailBtn">Send Email</button>
+        </div>
+        <div id="emailsContainer"></div>
+      </section>
+
+      <!-- 9. Reports Section -->
+      <section class="dashboard-section" id="reportsSection">
+        <h3>Reports</h3>
+        <textarea id="reportInput" placeholder="Write report here..."></textarea>
+        <button id="addReportBtn">Add Report</button>
+        <div id="weeklyReportsContainer"></div>
+      </section>
+
     </main>
   </div>
 
-  <script src="scripts/scripts.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
-
