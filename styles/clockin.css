@@ -1,84 +1,99 @@
-/* Clock-In Page Styles */
+/* Page Layout */
 main {
-    margin-left: 270px; /* keep space for sidebar */
-    padding: 30px 40px;
+    margin-left: 260px; /* space for sidebar */
+    padding: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafc;
+    min-height: 100vh;
 }
 
 header h1 {
     font-size: 2rem;
-    margin-bottom: 10px;
+    font-weight: 600;
     color: #1e1e2f;
+    margin-bottom: 5px;
 }
 
 header p {
     font-size: 1rem;
-    color: #555;
+    color: #666;
     margin-bottom: 30px;
 }
 
-/* Clock-In Controls */
+/* ===== Controls Section ===== */
 .clock-in-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 40px;
+    gap: 20px;
     align-items: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    margin-bottom: 35px;
+    border-left: 5px solid #0078d7; /* accent stripe */
 }
 
 .clock-in-controls label {
-    font-weight: 500;
-    margin-right: 10px;
+    font-weight: 600;
+    color: #333;
 }
 
 .clock-in-controls select {
-    padding: 8px 12px;
-    border-radius: 6px;
+    padding: 10px 14px;
+    border-radius: 8px;
     border: 1px solid #ccc;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    min-width: 180px;
+    transition: border-color 0.2s;
+}
+
+.clock-in-controls select:focus {
+    border-color: #0078d7;
+    outline: none;
 }
 
 .clock-in-controls button {
     padding: 10px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 1rem;
     cursor: pointer;
+    font-weight: 500;
     transition: all 0.3s ease;
 }
 
 #clockInBtn {
-    background-color: #4CAF50;
+    background: #0078d7;
     color: #fff;
 }
 
 #clockInBtn:hover {
-    background-color: #45a049;
+    background: #005fa3;
 }
 
 #clockOutBtn {
-    background-color: #f44336;
+    background: #f44336;
     color: #fff;
 }
 
 #clockOutBtn:hover {
-    background-color: #e53935;
+    background: #d32f2f;
 }
 
-/* Clock Table */
+/* ===== Worker Table ===== */
 .clock-table-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
 .clock-table-section h2 {
     margin-bottom: 15px;
     color: #1e1e2f;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 #clockTable {
@@ -86,20 +101,27 @@ header p {
     border-collapse: collapse;
 }
 
-#clockTable th, #clockTable td {
-    padding: 12px 15px;
+#clockTable th,
+#clockTable td {
+    padding: 14px 18px;
     text-align: center;
     border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
 }
 
 #clockTable th {
-    background-color: #f0f0f5;
-    color: #1e1e2f;
+    background: #f3f6fa;
+    font-weight: 600;
+    color: #333;
+}
+
+#clockTable td {
+    color: #444;
 }
 
 #clockTable td.status-clockin {
-    color: #4CAF50;
-    font-weight: 500;
+    color: #28a745;
+    font-weight: 600;
 }
 
 #clockTable td.status-clockout {
@@ -107,7 +129,7 @@ header p {
     font-weight: 500;
 }
 
-/* Responsive for mobile */
+/* ===== Responsive Design ===== */
 @media (max-width: 900px) {
     main {
         margin-left: 0;
@@ -120,7 +142,8 @@ header p {
     }
 
     #clockTable th, #clockTable td {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 10px 8px;
     }
 }
+
