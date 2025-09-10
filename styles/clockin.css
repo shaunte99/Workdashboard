@@ -1,0 +1,126 @@
+/* Clock-In Page Styles */
+main {
+    margin-left: 270px; /* keep space for sidebar */
+    padding: 30px 40px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #1e1e2f;
+}
+
+header p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Clock-In Controls */
+.clock-in-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.clock-in-controls label {
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.clock-in-controls select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+.clock-in-controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#clockInBtn {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+#clockInBtn:hover {
+    background-color: #45a049;
+}
+
+#clockOutBtn {
+    background-color: #f44336;
+    color: #fff;
+}
+
+#clockOutBtn:hover {
+    background-color: #e53935;
+}
+
+/* Clock Table */
+.clock-table-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.clock-table-section h2 {
+    margin-bottom: 15px;
+    color: #1e1e2f;
+}
+
+#clockTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#clockTable th, #clockTable td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+#clockTable th {
+    background-color: #f0f0f5;
+    color: #1e1e2f;
+}
+
+#clockTable td.status-clockin {
+    color: #4CAF50;
+    font-weight: 500;
+}
+
+#clockTable td.status-clockout {
+    color: #888;
+    font-weight: 500;
+}
+
+/* Responsive for mobile */
+@media (max-width: 900px) {
+    main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .clock-in-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #clockTable th, #clockTable td {
+        font-size: 0.9rem;
+        padding: 10px 8px;
+    }
+}
