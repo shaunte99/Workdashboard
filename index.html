@@ -1,104 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poppie Ops Dashboard</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <!-- FullCalendar CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Dashboard - Home</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Poppie Ops Dashboard</h1>
-    </header>
+    <!-- Sidebar / Navigation -->
+    <aside id="sidebar">
+        <h2>Event Dashboard</h2>
+        <ul>
+            <li><a href="clockin.html"> Clock-In</a></li>
+            <li><a href="tasks.html">Tasks</a></li>
+            <li><a href="quotes.html">Quotes</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="tracking.html"> Tracking</a></li>
+            <li><a href="moodboard.html"> Moodboard</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="inbox.html"> Inbox</a></li>
+            <li><a href="reports.html"> Reports</a></li>
+        </ul>
+    </aside>
 
-    <main>
-        <!-- 1. Clock-In / Clock-Out -->
-        <section id="clockInSection" class="dashboard-section">
-            <h2>Clock-In / Clock-Out</h2>
-            <div id="workerList"></div>
-            <button id="addWorkerBtn">Add Worker</button>
-        </section>
+    <!-- Main Content -->
+    <main id="mainContent">
+        <header>
+            <h1>Welcome to Your Event Dashboard</h1>
+            <p>Professional management system for all your events, tasks, quotes, and more.</p>
+        </header>
 
-        <!-- 2. Tasks -->
-        <section id="tasksSection" class="dashboard-section">
-            <h2>Tasks</h2>
-            <div id="taskList"></div>
-            <button id="addTaskBtn">Add Task</button>
-        </section>
-
-        <!-- 3. Quotes -->
-        <section id="quotesSection" class="dashboard-section">
-            <h2>Quotes</h2>
-            <div id="quotesTable">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="quotesBody">
-                        <!-- JS will populate rows -->
-                    </tbody>
-                </table>
-                <button id="addQuoteBtn">Add Quote Item</button>
+        <section class="overview-cards">
+            <div class="card">
+                <h3>Clocked Hours</h3>
+                <p>Track your time and your workers’ hours</p>
+            </div>
+            <div class="card">
+                <h3>Tasks</h3>
+                <p>View pending tasks, priorities, and progress</p>
+            </div>
+            <div class="card">
+                <h3>Upcoming Events</h3>
+                <p>See your calendar at a glance</p>
+            </div>
+            <div class="card">
+                <h3>Quotes Summary</h3>
+                <p>Quick access to your latest quotes</p>
             </div>
         </section>
 
-        <!-- 4. Calendar -->
-        <section id="calendarSection" class="dashboard-section">
-            <h2>Calendar</h2>
-            <div id="calendar"></div>
-        </section>
-
-        <!-- 5. Tracking -->
-        <section id="trackingSection" class="dashboard-section">
-            <h2>Event & Order Tracking</h2>
-            <div id="trackingList"></div>
-        </section>
-
-        <!-- 6. Moodboard -->
-        <section id="moodboardSection" class="dashboard-section">
-            <h2>Moodboard</h2>
-            <div id="templateList" class="template-list"></div>
-            <div id="moodboard" class="moodboard-preview"></div>
-        </section>
-
-        <!-- 7. Inventory Tracker -->
-        <section id="inventorySection" class="dashboard-section">
-            <h2>Inventory Tracker</h2>
-            <div id="inventoryList"></div>
-            <button id="addInventoryBtn">Add Inventory Item</button>
-        </section>
-
-        <!-- 8. Email / Inbox -->
-        <section id="emailSection" class="dashboard-section">
-            <h2>Email & Inbox</h2>
-            <div id="emailList"></div>
-            <button id="composeEmailBtn">Compose Email</button>
-        </section>
-
-        <!-- 9. Reports -->
-        <section id="reportsSection" class="dashboard-section">
-            <h2>Reports</h2>
-            <button id="downloadReportBtn">Download Full Report</button>
-            <div id="reportPreview"></div>
+        <section class="quick-links">
+            <h2>Quick Access</h2>
+            <div class="links-container">
+                <a href="clockin.html" class="link-card">🕒 Clock-In</a>
+                <a href="tasks.html" class="link-card">✅ Tasks</a>
+                <a href="quotes.html" class="link-card">📊 Quotes</a>
+                <a href="calendar.html" class="link-card">📅 Calendar</a>
+                <a href="tracking.html" class="link-card">📈 Tracking</a>
+                <a href="moodboard.html" class="link-card">🎨 Moodboard</a>
+                <a href="inventory.html" class="link-card">📦 Inventory</a>
+                <a href="inbox.html" class="link-card">✉️ Inbox</a>
+                <a href="reports.html" class="link-card">📝 Reports</a>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 Poppie Ops Dashboard</p>
-    </footer>
-
-    <!-- JS Files -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <script src="scripts/scripts.js"></script>
+<script src="scripts.js"></script>
 </body>
 </html>
+
+
 
 
 
