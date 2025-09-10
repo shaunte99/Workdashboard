@@ -1,4 +1,4 @@
-/* ===== Reset & Base ===== */
+/* Reset + Base */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ body {
   color: #333;
 }
 
-/* ===== Sidebar (same as main) ===== */
+/* Sidebar */
 #sidebar {
   width: 250px;
   background-color: #1e1e2f;
@@ -43,11 +43,10 @@ body {
 #sidebar ul li a {
   text-decoration: none;
   color: #cfcfe0;
-  display: flex;
-  align-items: center;
-  font-weight: 500;
+  display: block;
   padding: 10px;
   border-radius: 8px;
+  font-weight: 500;
   transition: all 0.3s ease;
 }
 
@@ -57,7 +56,7 @@ body {
   color: #fff;
 }
 
-/* ===== Main Content ===== */
+/* Main content */
 main {
   margin-left: 270px;
   flex: 1;
@@ -76,177 +75,116 @@ header p {
   margin-bottom: 30px;
 }
 
-/* ===== Client Info Form ===== */
-.client-info {
+/* Section Styling */
+section {
+  margin-bottom: 40px;
   background: #fff;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.client-info h2 {
+/* Client Info */
+.client-info .form-group {
   margin-bottom: 15px;
+}
+
+.client-info label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
   color: #1e1e2f;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-.form-group input {
+.client-info input {
+  width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 0.95rem;
-  transition: border 0.3s ease;
-}
-
-.form-group input:focus {
-  border-color: #3a3a5c;
   outline: none;
+  transition: border-color 0.3s;
 }
 
-/* ===== Quotes Table ===== */
-.quotes-table-section {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-  overflow-x: auto;
+.client-info input:focus {
+  border-color: #3a3a5c;
 }
 
-.quotes-table-section h2 {
-  margin-bottom: 15px;
-}
-
-#quotesTable {
+/* Table */
+.quote-section table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
-  min-width: 700px; /* for scroll on mobile */
+  margin-bottom: 15px;
 }
 
-#quotesTable th,
-#quotesTable td {
+.quote-section th,
+.quote-section td {
   border: 1px solid #ddd;
-  padding: 12px 10px;
-  text-align: left;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
-#quotesTable th {
-  background: #1e1e2f;
+.quote-section th {
+  background-color: #1e1e2f;
   color: #fff;
-  font-weight: 600;
 }
 
-#quotesTable td input {
-  width: 100%;
-  padding: 8px;
-  border: none;
-  outline: none;
-  font-size: 0.9rem;
+.quote-section td input {
+  width: 90%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
 }
 
-#quotesTable tr:nth-child(even) {
-  background: #f9f9fb;
+.quote-section button {
+  margin-top: 10px;
 }
 
-#quotesTable tr:hover {
-  background: #f1f1f5;
-}
-
-#addRowBtn {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #3a3a5c;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#addRowBtn:hover {
-  background: #57578b;
-}
-
-/* ===== Summary Section ===== */
-.summary-section {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-}
-
-.summary-line {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+/* Totals */
+.totals p {
+  margin: 8px 0;
   font-size: 1rem;
 }
 
-.summary-line.total {
+.totals .grand-total {
+  font-size: 1.2rem;
   font-weight: 700;
   color: #1e1e2f;
-  border-top: 2px solid #ddd;
-  padding-top: 10px;
 }
 
-/* ===== Actions ===== */
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.actions button {
-  padding: 12px 20px;
+/* Buttons */
+.btn {
+  padding: 10px 18px;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.95rem;
   font-weight: 600;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.actions #saveQuoteBtn {
-  background: #3a3a5c;
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn.primary {
+  background-color: #3a3a5c;
   color: #fff;
 }
 
-.actions #saveQuoteBtn:hover {
-  background: #57578b;
-}
-
-.actions #downloadQuoteBtn {
-  background: #1e1e2f;
+.btn.success {
+  background-color: #2e8b57;
   color: #fff;
 }
 
-.actions #downloadQuoteBtn:hover {
-  background: #3a3a5c;
-}
-
-.actions #clearQuoteBtn {
-  background: #d9534f;
+.btn.danger {
+  background-color: #c0392b;
   color: #fff;
 }
 
-.actions #clearQuoteBtn:hover {
-  background: #c9302c;
-}
-
-/* ===== Responsive (Mobile) ===== */
+/* Mobile responsiveness */
 @media (max-width: 900px) {
   #sidebar {
     position: relative;
@@ -271,25 +209,32 @@ header p {
     padding: 20px;
   }
 
-  .quotes-table-section {
-    overflow-x: auto;
-  }
-
-  #quotesTable {
-    font-size: 0.85rem;
-    min-width: 600px;
-  }
-
-  .form-group {
-    flex-direction: column;
-  }
-
-  .actions {
-    flex-direction: column;
-  }
-
-  .actions button {
+  .quote-section table,
+  .quote-section thead,
+  .quote-section tbody,
+  .quote-section th,
+  .quote-section td,
+  .quote-section tr {
+    display: block;
     width: 100%;
-    text-align: center;
+  }
+
+  .quote-section tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .quote-section td {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 5px;
+  }
+
+  .quote-section th {
+    display: none;
   }
 }
+
