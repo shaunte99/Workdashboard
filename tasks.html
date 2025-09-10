@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Tasks - Event Dashboard</title>
+<link rel="stylesheet" href="styles/tasks.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <h2>Event Dashboard</h2>
+        <ul>
+            <li><a href="index.html">🏠 Home</a></li>
+            <li><a href="clockin.html">🕒 Clock-In</a></li>
+            <li><a href="tasks.html" class="active">✅ My Tasks</a></li>
+            <li><a href="quotes.html">📊 Quotes</a></li>
+            <li><a href="calendar.html">📅 Calendar</a></li>
+            <li><a href="tracking.html">📈 Tracking</a></li>
+            <li><a href="moodboard.html">🎨 Moodboard</a></li>
+            <li><a href="inventory.html">📦 Inventory</a></li>
+            <li><a href="inbox.html">✉️ Inbox</a></li>
+            <li><a href="reports.html">📝 Reports</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main>
+        <header>
+            <h1>My Tasks</h1>
+            <p>Track and manage all your personal tasks efficiently.</p>
+        </header>
+
+        <!-- Add Task Section -->
+        <section class="add-task-section">
+            <h2>Add New Task</h2>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskName">Task Name:</label>
+                    <input type="text" id="taskName" placeholder="Enter task name" required>
+                </div>
+                <div class="form-group">
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" id="dueDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Priority:</label>
+                    <select id="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                <button type="submit" id="addTaskBtn">Add Task</button>
+            </form>
+        </section>
+
+        <!-- Tasks Table Section -->
+        <section class="tasks-table-section">
+            <h2>My Task List</h2>
+            <table id="tasksTable">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Due Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JS will dynamically populate tasks here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+<script src="scripts/tasks.js"></script>
+</body>
+</html>
