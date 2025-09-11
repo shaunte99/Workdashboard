@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Calendar</title>
+  <link rel="stylesheet" href="calendar.css">
+</head>
+<body>
+  <div class="calendar-container">
+    
+    <!-- Header -->
+    <header class="calendar-header">
+      <button class="nav-btn prev-month">❮</button>
+      <h2 class="month-year">September 2025</h2>
+      <button class="nav-btn next-month">❯</button>
+    </header>
+
+    <!-- Weekdays -->
+    <div class="calendar-weekdays">
+      <div>Sun</div>
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+    </div>
+
+    <!-- Days Grid -->
+    <div class="calendar-days">
+      <!-- Days will be dynamically inserted here via JS -->
+      <div class="day"><span class="date">1</span></div>
+      <div class="day"><span class="date">2</span></div>
+      <div class="day"><span class="date">3</span></div>
+      <!-- ... continue up to 30 -->
+    </div>
+  </div>
+
+  <!-- Floating Add Event Button -->
+  <button class="add-event-btn">+</button>
+
+  <!-- Add Event Modal -->
+  <div class="modal" id="event-modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>Add New Event</h3>
+      <form id="event-form">
+        <label>Event Title</label>
+        <input type="text" name="title" required>
+
+        <label>Event Type</label>
+        <select name="type">
+          <option value="wedding">Wedding</option>
+          <option value="birthday">Birthday</option>
+          <option value="corporate">Corporate</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label>Date</label>
+        <input type="date" name="date" required>
+
+        <label>Time</label>
+        <input type="time" name="time">
+
+        <label>Notes</label>
+        <textarea name="notes" rows="3"></textarea>
+
+        <button type="submit" class="save-event">Save Event</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="calendar.js"></script>
+</body>
+</html>
