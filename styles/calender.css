@@ -1,285 +1,243 @@
-/* ==============================
-   Global Styles
-   ============================== */
+/* Reset basics */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
-  font-family: 'Poppins', sans-serif;
-  background: #f8f9fa;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  color: #333;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f7; /* same soft professional background */
+    color: #333;
 }
 
-/* Container */
+/* Sidebar (same as main page) */
+#sidebar {
+    width: 250px;
+    background-color: #1e1e2f;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100%;
+}
+
+#sidebar h2 {
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#sidebar ul {
+    list-style: none;
+}
+
+#sidebar ul li {
+    margin-bottom: 20px;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: #cfcfe0;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#sidebar ul li a:hover {
+    background-color: #3a3a5c;
+    color: #fff;
+}
+
+/* Main content */
+main {
+    margin-left: 270px;
+    flex: 1;
+    padding: 30px 40px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #1e1e2f;
+}
+
+header p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Calendar Container */
 .calendar-container {
-  width: 95%;
-  max-width: 900px;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
-  padding: 20px;
-  margin: 20px 0;
-  overflow: hidden;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* ==============================
-   Calendar Header
-   ============================== */
+/* Calendar Header */
 .calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .calendar-header h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #444;
+    font-size: 1.3rem;
+    color: #1e1e2f;
 }
 
-.nav-btn {
-  background: #f1f3f5;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: 0.3s ease;
+.calendar-header button {
+    background-color: #3a3a5c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-.nav-btn:hover {
-  background: #007bff;
-  color: #fff;
+.calendar-header button:hover {
+    background-color: #57578b;
 }
 
-/* ==============================
-   Weekday Row
-   ============================== */
+/* Weekdays Row */
 .calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  font-weight: 600;
-  color: #666;
-  margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
 }
 
-.calendar-weekdays div {
-  padding: 10px 0;
-  background: #f9fafc;
-  border-radius: 10px;
-  font-size: 0.9rem;
-}
-
-/* ==============================
-   Calendar Days Grid
-   ============================== */
+/* Days Grid */
 .calendar-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
 }
 
-.day {
-  background: #ffffff;
-  border-radius: 12px;
-  min-height: 90px;
-  padding: 8px;
-  position: relative;
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
-  cursor: pointer;
-  transition: 0.3s ease;
+.calendar-days div {
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f9f9fb;
 }
 
-.day:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+.calendar-days div:hover {
+    background-color: #3a3a5c;
+    color: #fff;
 }
 
-.date {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #333;
+.calendar-days .today {
+    border: 2px solid #3a3a5c;
+    font-weight: 700;
 }
 
-.day .event-dot {
-  width: 8px;
-  height: 8px;
-  background: #007bff;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* ==============================
-   Add Event Button
-   ============================== */
-.add-event-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #007bff;
-  color: #fff;
-  font-size: 2rem;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
-  transition: 0.3s ease;
-  z-index: 1000;
-}
-
-.add-event-btn:hover {
-  background: #0056b3;
-  transform: scale(1.1);
-}
-
-/* ==============================
-   Modal
-   ============================== */
+/* Event Modal */
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  background-color: rgba(0,0,0,0.5);
-  animation: fadeIn 0.3s ease;
+    display: none; /* hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
-  background: #fff;
-  margin: 10% auto;
-  padding: 20px;
-  border-radius: 20px;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
-  animation: slideUp 0.4s ease;
-}
-
-.close-modal {
-  float: right;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #888;
-  cursor: pointer;
-}
-
-.close-modal:hover {
-  color: #000;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .modal-content h3 {
-  margin-bottom: 15px;
-  font-weight: 600;
-  color: #444;
+    margin-bottom: 15px;
+    color: #1e1e2f;
+    text-align: center;
 }
 
-/* ==============================
-   Form Inside Modal
-   ============================== */
-#event-form {
-  display: flex;
-  flex-direction: column;
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #555;
 }
 
-#event-form label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin: 8px 0 4px;
-  color: #555;
-}
-
-#event-form input,
-#event-form select,
-#event-form textarea {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  outline: none;
-  margin-bottom: 10px;
-  transition: border 0.3s ease;
-}
-
-#event-form input:focus,
-#event-form select:focus,
-#event-form textarea:focus {
-  border-color: #007bff;
-}
-
-.save-event {
-  padding: 12px;
-  background: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.save-event:hover {
-  background: #0056b3;
-}
-
-/* ==============================
-   Animations
-   ============================== */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* ==============================
-   Responsive
-   ============================== */
-@media (max-width: 768px) {
-  .calendar-container {
+.modal-content input {
     width: 100%;
-    padding: 15px;
-    border-radius: 15px;
-  }
-
-  .calendar-header h2 {
-    font-size: 1.3rem;
-  }
-
-  .calendar-weekdays div {
-    font-size: 0.75rem;
-    padding: 6px 0;
-  }
-
-  .day {
-    min-height: 70px;
-    padding: 6px;
-  }
-
-  .date {
-    font-size: 0.8rem;
-  }
-
-  .add-event-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.6rem;
-  }
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 1rem;
 }
+
+.modal-content button {
+    width: 100%;
+    background-color: #3a3a5c;
+    color: #fff;
+    border: none;
+    padding: 10px 0;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #57578b;
+}
+
+.close-btn {
+    float: right;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .calendar-weekdays, .calendar-days {
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 0.8rem;
+    }
+
+    .calendar-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .calendar-header button {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+}
+
