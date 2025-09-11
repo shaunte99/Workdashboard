@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Dashboard - Inventory</title>
+  <link rel="stylesheet" href="styles/inventory.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <h2>Event Dashboard</h2>
+    <ul>
+      <li><a href="clockin.html"> Clock-In</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="quotes.html">Quotes</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="tracking.html">Tracking</a></li>
+      <li><a href="moodboard.html">Moodboard</a></li>
+      <li><a href="inventory.html" class="active">Inventory</a></li>
+      <li><a href="inbox.html">Inbox</a></li>
+      <li><a href="reports.html">Reports</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main>
+    <header>
+      <h1>Inventory Management</h1>
+      <p>Keep track of all items for your events in one place.</p>
+    </header>
+
+    <!-- Add Item Form -->
+    <section class="add-item">
+      <h2>Add New Item</h2>
+      <form id="inventoryForm">
+        <input type="text" id="itemName" placeholder="Item Name" required>
+        <input type="text" id="itemCategory" placeholder="Category" required>
+        <input type="number" id="itemQuantity" placeholder="Quantity" required>
+        <select id="itemStatus" required>
+          <option value="">Select Status</option>
+          <option value="Available">Available</option>
+          <option value="In Use">In Use</option>
+          <option value="Out of Stock">Out of Stock</option>
+        </select>
+        <button type="submit">Add Item</button>
+      </form>
+    </section>
+
+    <!-- Inventory Table -->
+    <section class="inventory-list">
+      <h2>Current Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventoryTableBody">
+          <!-- Items will show here -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="scripts/inventory.js"></script>
+</body>
+</html>
