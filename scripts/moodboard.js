@@ -1,39 +1,60 @@
 // ===== Moodboard JS =====
 
-// Get all template cards
-const moodboardCards = document.querySelectorAll('.moodboard-card');
+// Select all slots
+const slots = document.querySelectorAll('.slot');
+const downloadBtn = document.getElementById('downloadBoard');
+const moodboard = document.querySelector('.moodboard-template');
 
-// Function to handle image uploads and preview
-moodboardCards.forEach(card => {
-    const imageSlots = card.querySelectorAll('.image-slot');
+// Hidden file input (reused for all slots)
+const fileInput = document.createElement('input');
+fileInput.type = 'file';
+fileInput.accept = 'image/*';
+fileInput.style.display = 'none';
+document.body.appendChild(fileInput);
 
-    imageSlots.forEach(slot => {
-        const input = slot.querySelector('.upload-input');
-        const preview = slot.querySelector('.preview');
+let activeSlot = null;
 
-        // When user selects an image
-        input.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = () => {
-                preview.src = reader.result;
-                preview.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        });
-    });
-
-    // Download template
-    const downloadBtn = card.querySelector('.download-btn');
-    downloadBtn.addEventListener('click', () => {
-        // Use html2canvas to capture the card
-        html2canvas(card).then(canvas => {
-            const link = document.createElement('a');
-            link.download = `${card.querySelector('h2').textContent.replace(/\s/g, '_')}.png`;
-            link.href = canvas.toDataURL();
-            link.click();
-        });
-    });
+// Handle slot click
+slots.forEach(slot => {
+  slot.addEventListener('click', () => {
+    activeSlot = slot;
+    fileInput.click();
+  });
 });
+
+// Handle file input
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  if (!file || !activeSlot) return;
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    // Remove placeholder text
+    activeSlot.innerHTML = "";
+
+    // Insert uploaded image
+    const img = document.createElement('img');
+    img.src = e.target.result;
+    activeSlot.appendChild(img);
+  };
+  reader.readAsDataURL(file);
+
+  // Reset input
+  fileInput.value = "";
+});
+
+// Download moodboard
+downloadBtn.addEventListener('click', () => {
+  if (!moodboard) return;
+
+  html2canvas(moodboard, {
+    backgroundColor: '#ffffff',
+    useCORS: true
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'moodboard.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+});
+
