@@ -29,7 +29,9 @@ function renderCalendar(month, year) {
     calendarDays.innerHTML = '';
     monthYear.textContent = `${months[month]} ${year}`;
 
-    const firstDay = new Date(year, month, 1).getDay();
+    let firstDay = new Date(year, month, 1).getDay(); // 0 = Sunday
+    firstDay = (firstDay + 6) % 7; // Shift so Monday = 0
+
     const lastDate = new Date(year, month + 1, 0).getDate();
 
     // Add empty cells for days before first of month
