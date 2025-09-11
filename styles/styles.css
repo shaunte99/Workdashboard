@@ -138,6 +138,7 @@ header p {
 }
 
 /* Responsive for mobile */
+/* Responsive for mobile */
 @media (max-width: 900px) {
     #sidebar {
         position: relative;
@@ -170,6 +171,3 @@ header p {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
 }
-
-
-
