@@ -3,74 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event Calendar</title>
-  <link rel="stylesheet" href="styles/calender.css">
+  <title>Calendar - Event Dashboard</title>
+  <link rel="stylesheet" href="styles/calendar.css">
 </head>
 <body>
-  <div class="calendar-container">
-    
-    <!-- Header -->
-    <header class="calendar-header">
-      <button class="nav-btn prev-month">❮</button>
-      <h2 class="month-year">September 2025</h2>
-      <button class="nav-btn next-month">❯</button>
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <h2>Event Dashboard</h2>
+    <ul>
+      <li><a href="index.html">🏠 Home</a></li>
+      <li><a href="clockin.html">🕒 Clock-In</a></li>
+      <li><a href="tasks.html">✅ Tasks</a></li>
+      <li><a href="quotes.html">📊 Quotes</a></li>
+      <li><a href="calendar.html" class="active">📅 Calendar</a></li>
+      <li><a href="tracking.html">📈 Tracking</a></li>
+      <li><a href="moodboard.html">🎨 Moodboard</a></li>
+      <li><a href="inventory.html">📦 Inventory</a></li>
+      <li><a href="inbox.html">✉️ Inbox</a></li>
+      <li><a href="reports.html">📝 Reports</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <header>
+      <h1>Calendar</h1>
+      <p>Plan and track all events, weddings, and deadlines with ease.</p>
     </header>
 
-    <!-- Weekdays -->
-    <div class="calendar-weekdays">
-      <div>Sun</div>
-      <div>Mon</div>
-      <div>Tue</div>
-      <div>Wed</div>
-      <div>Thu</div>
-      <div>Fri</div>
-      <div>Sat</div>
+    <!-- Calendar Container -->
+    <section class="calendar-container">
+      <!-- Calendar Header -->
+      <div class="calendar-header">
+        <button id="prevMonth">◀</button>
+        <h2 id="monthYear">September 2025</h2>
+        <button id="nextMonth">▶</button>
+      </div>
+
+      <!-- Weekdays -->
+      <div class="calendar-weekdays">
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+        <div>Sun</div>
+      </div>
+
+      <!-- Calendar Days Grid -->
+      <div class="calendar-days" id="calendarDays">
+        <!-- JS will generate days dynamically -->
+      </div>
+    </section>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h3>Add Event</h3>
+        <form id="eventForm">
+          <label for="eventDate">Date:</label>
+          <input type="text" id="eventDate" readonly>
+
+          <label for="eventTitle">Event Title:</label>
+          <input type="text" id="eventTitle" placeholder="Wedding at Venue X" required>
+
+          <label for="eventTime">Time:</label>
+          <input type="time" id="eventTime" required>
+
+          <button type="submit">Save Event</button>
+        </form>
+      </div>
     </div>
+  </main>
 
-    <!-- Days Grid -->
-    <div class="calendar-days">
-      <!-- Days will be dynamically inserted here via JS -->
-      <div class="day"><span class="date">1</span></div>
-      <div class="day"><span class="date">2</span></div>
-      <div class="day"><span class="date">3</span></div>
-      <!-- ... continue up to 30 -->
-    </div>
-  </div>
-
-  <!-- Floating Add Event Button -->
-  <button class="add-event-btn">+</button>
-
-  <!-- Add Event Modal -->
-  <div class="modal" id="event-modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h3>Add New Event</h3>
-      <form id="event-form">
-        <label>Event Title</label>
-        <input type="text" name="title" required>
-
-        <label>Event Type</label>
-        <select name="type">
-          <option value="wedding">Wedding</option>
-          <option value="birthday">Birthday</option>
-          <option value="corporate">Corporate</option>
-          <option value="other">Other</option>
-        </select>
-
-        <label>Date</label>
-        <input type="date" name="date" required>
-
-        <label>Time</label>
-        <input type="time" name="time">
-
-        <label>Notes</label>
-        <textarea name="notes" rows="3"></textarea>
-
-        <button type="submit" class="save-event">Save Event</button>
-      </form>
-    </div>
-  </div>
-
-  <script src="scripts/calender.js"></script>
+  <script src="scripts/calendar.js"></script>
 </body>
 </html>
+
