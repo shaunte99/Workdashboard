@@ -1,193 +1,123 @@
-/* ==============================
-   Calendar Logic - calendar.js
-   ============================== */
+// ===== Calendar JS =====
 
-document.addEventListener("DOMContentLoaded", () => {
-  const calendarDays = document.getElementById("calendar-days");
-  const monthYear = document.getElementById("month-year");
-  const prevBtn = document.getElementById("prev-month");
-  const nextBtn = document.getElementById("next-month");
+// DOM Elements
+const calendarDays = document.querySelector('.calendar-days');
+const monthYear = document.querySelector('.calendar-header h2');
+const prevBtn = document.getElementById('prevMonth');
+const nextBtn = document.getElementById('nextMonth');
+const modal = document.querySelector('.modal');
+const modalClose = document.querySelector('.close-btn');
+const eventForm = document.querySelector('#eventForm');
+const eventDateInput = document.querySelector('#eventDate');
+const eventDescInput = document.querySelector('#eventDesc');
 
-  const modal = document.getElementById("event-modal");
-  const closeModal = document.querySelector(".close-modal");
-  const addEventBtn = document.getElementById("add-event-btn");
-  const eventForm = document.getElementById("event-form");
-  const saveEventBtn = document.querySelector(".save-event");
+let today = new Date();
+let currentMonth = today.getMonth();
+let currentYear = today.getFullYear();
 
-  let currentDate = new Date();
-  let events = JSON.parse(localStorage.getItem("calendarEvents")) || {};
+// Store events
+let events = {}; // { 'YYYY-MM-DD': ['Event 1', 'Event 2'] }
 
-  /* ==============================
-     Render Calendar
-     ============================== */
-  function renderCalendar() {
-    calendarDays.innerHTML = "";
+// Month names
+const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+];
 
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+// Render Calendar
+function renderCalendar(month, year) {
+    calendarDays.innerHTML = '';
+    monthYear.textContent = `${months[month]} ${year}`;
 
-    // Month name + year
-    const options = { month: "long", year: "numeric" };
-    monthYear.textContent = currentDate.toLocaleDateString("en-US", options);
-
-    // First + last day
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
 
-    // Blank cells before start
+    // Add empty cells for days before first of month
     for (let i = 0; i < firstDay; i++) {
-      const blank = document.createElement("div");
-      calendarDays.appendChild(blank);
+        const emptyDiv = document.createElement('div');
+        calendarDays.appendChild(emptyDiv);
     }
 
-    // Days
+    // Add days
     for (let day = 1; day <= lastDate; day++) {
-      const dayDiv = document.createElement("div");
-      dayDiv.classList.add("day");
+        const dayDiv = document.createElement('div');
+        dayDiv.textContent = day;
 
-      const dateSpan = document.createElement("span");
-      dateSpan.classList.add("date");
-      dateSpan.textContent = day;
+        const fullDate = `${year}-${(month + 1).toString().padStart(2,'0')}-${day.toString().padStart(2,'0')}`;
 
-      dayDiv.appendChild(dateSpan);
+        // Highlight today
+        if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+            dayDiv.classList.add('today');
+        }
 
-      // Event dot if exists
-      const dateKey = `${year}-${month + 1}-${day}`;
-      if (events[dateKey] && events[dateKey].length > 0) {
-        const dot = document.createElement("div");
-        dot.classList.add("event-dot");
-        dayDiv.appendChild(dot);
-      }
+        // Add event indicator
+        if (events[fullDate]) {
+            const eventDot = document.createElement('div');
+            eventDot.style.width = '6px';
+            eventDot.style.height = '6px';
+            eventDot.style.borderRadius = '50%';
+            eventDot.style.backgroundColor = '#3a3a5c';
+            eventDot.style.margin = '3px auto 0';
+            dayDiv.appendChild(eventDot);
+        }
 
-      // Click to view/add events
-      dayDiv.addEventListener("click", () => openEventModal(dateKey));
+        // Click to open modal
+        dayDiv.addEventListener('click', () => openModal(fullDate));
 
-      calendarDays.appendChild(dayDiv);
+        calendarDays.appendChild(dayDiv);
     }
-  }
+}
 
-  /* ==============================
-     Modal Functions
-     ============================== */
-  function openEventModal(dateKey) {
-    modal.style.display = "block";
-
-    // Show date-specific events
-    const eventList = document.createElement("div");
-    eventList.innerHTML = "";
-
-    if (events[dateKey] && events[dateKey].length > 0) {
-      eventList.innerHTML = `<h4>Events for ${dateKey}</h4>`;
-      events[dateKey].forEach((evt, i) => {
-        const evtDiv = document.createElement("div");
-        evtDiv.style.marginBottom = "10px";
-        evtDiv.innerHTML = `
-          <strong>${evt.title}</strong><br/>
-          ${evt.time ? evt.time + " - " : ""}${evt.description || ""}
-        `;
-
-        // Delete button
-        const delBtn = document.createElement("button");
-        delBtn.textContent = "Delete";
-        delBtn.style.marginTop = "5px";
-        delBtn.style.background = "#dc3545";
-        delBtn.style.color = "#fff";
-        delBtn.style.border = "none";
-        delBtn.style.borderRadius = "6px";
-        delBtn.style.padding = "5px 8px";
-        delBtn.style.cursor = "pointer";
-
-        delBtn.addEventListener("click", () => {
-          events[dateKey].splice(i, 1);
-          if (events[dateKey].length === 0) delete events[dateKey];
-          saveEvents();
-          renderCalendar();
-          openEventModal(dateKey); // refresh modal
-        });
-
-        evtDiv.appendChild(delBtn);
-        eventList.appendChild(evtDiv);
-      });
-    } else {
-      eventList.innerHTML = `<p>No events yet. Add one below 👇</p>`;
+// Navigation
+prevBtn.addEventListener('click', () => {
+    currentMonth--;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
     }
-
-    // Insert into modal before form
-    const existingList = modal.querySelector("#event-list");
-    if (existingList) existingList.remove();
-
-    eventList.id = "event-list";
-    modal.querySelector(".modal-content").insertBefore(eventList, eventForm);
-
-    // Pre-fill hidden date field
-    document.getElementById("event-date").value = dateKey;
-  }
-
-  function closeEventModal() {
-    modal.style.display = "none";
-    eventForm.reset();
-  }
-
-  /* ==============================
-     Save Events
-     ============================== */
-  function saveEvents() {
-    localStorage.setItem("calendarEvents", JSON.stringify(events));
-  }
-
-  eventForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const title = document.getElementById("event-title").value;
-    const dateKey = document.getElementById("event-date").value;
-    const time = document.getElementById("event-time").value;
-    const description = document.getElementById("event-description").value;
-
-    if (!title) {
-      alert("Event title is required!");
-      return;
-    }
-
-    if (!events[dateKey]) events[dateKey] = [];
-
-    events[dateKey].push({ title, time, description });
-    saveEvents();
-
-    renderCalendar();
-    closeEventModal();
-  });
-
-  /* ==============================
-     Navigation
-     ============================== */
-  prevBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    renderCalendar();
-  });
-
-  nextBtn.addEventListener("click", () => {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    renderCalendar();
-  });
-
-  // Close modal events
-  closeModal.addEventListener("click", closeEventModal);
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) closeEventModal();
-  });
-
-  addEventBtn.addEventListener("click", () => openEventModal(getTodayKey()));
-
-  /* ==============================
-     Helpers
-     ============================== */
-  function getTodayKey() {
-    const now = new Date();
-    return `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-  }
-
-  /* ==============================
-     Init
-     ============================== */
-  renderCalendar();
+    renderCalendar(currentMonth, currentYear);
 });
+
+nextBtn.addEventListener('click', () => {
+    currentMonth++;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    renderCalendar(currentMonth, currentYear);
+});
+
+// Modal functions
+function openModal(date) {
+    modal.style.display = 'block';
+    eventDateInput.value = date;
+    eventDescInput.value = '';
+}
+
+modalClose.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Submit Event
+eventForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const date = eventDateInput.value;
+    const desc = eventDescInput.value.trim();
+
+    if (!desc) return;
+
+    if (!events[date]) events[date] = [];
+    events[date].push(desc);
+
+    modal.style.display = 'none';
+    renderCalendar(currentMonth, currentYear);
+});
+
+// Initial render
+renderCalendar(currentMonth, currentYear);
