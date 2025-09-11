@@ -1,64 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress Tracking</title>
-  <link rel="stylesheet" href="styles/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tracking - Event Dashboard</title>
+<link rel="stylesheet" href="styles/tracking.css">
 </head>
 <body>
-  <!-- Sidebar / Navigation -->
-  <aside id="sidebar">
-    <h2>Event Dashboard</h2>
-    <ul>
-      <li><a href="clockin.html"> Clock-In</a></li>
-      <li><a href="tasks.html">Tasks</a></li>
-      <li><a href="quotes.html">Quotes</a></li>
-      <li><a href="calendar.html">Calendar</a></li>
-      <li><a href="tracking.html" class="active"> Tracking</a></li>
-      <li><a href="moodboard.html"> Moodboard</a></li>
-      <li><a href="inventory.html">Inventory</a></li>
-      <li><a href="inbox.html"> Inbox</a></li>
-      <li><a href="reports.html"> Reports</a></li>
-    </ul>
-  </aside>
+    <!-- Sidebar / Navigation -->
+    <aside id="sidebar">
+        <h2>Event Dashboard</h2>
+        <ul>
+            <li><a href="clockin.html">🕒 Clock-In</a></li>
+            <li><a href="tasks.html">✅ Tasks</a></li>
+            <li><a href="quotes.html">📊 Quotes</a></li>
+            <li><a href="calendar.html">📅 Calendar</a></li>
+            <li><a href="tracking.html" class="active">📈 Tracking</a></li>
+            <li><a href="moodboard.html">🎨 Moodboard</a></li>
+            <li><a href="inventory.html">📦 Inventory</a></li>
+            <li><a href="inbox.html">✉️ Inbox</a></li>
+            <li><a href="reports.html">📝 Reports</a></li>
+        </ul>
+    </aside>
 
-  <!-- Main Content -->
-  <main id="mainContent">
-    <header>
-      <h1>Progress Tracking</h1>
-      <p>Overview of workers, events, and tasks progress</p>
-    </header>
+    <!-- Main Content -->
+    <main>
+        <header>
+            <h1>Tracking Progress</h1>
+            <p>Monitor your progress across different event categories and see your achievements at a glance.</p>
+        </header>
 
-    <!-- Tracker Categories -->
-    <section class="overview-cards">
-      <div class="card">
-        <h3>Workers</h3>
-        <p>Data will be shown here to report progress.</p>
-      </div>
+        <!-- Progress Cards -->
+        <section class="tracking-cards">
+            <div class="card">
+                <h3>Decorations</h3>
+                <p>Progress: <strong>75%</strong></p>
+                <p>Tasks Completed: 15/20</p>
+            </div>
 
-      <div class="card">
-        <h3>Events</h3>
-        <p>Data will be shown here to report progress.</p>
-      </div>
+            <div class="card">
+                <h3>Catering</h3>
+                <p>Progress: <strong>50%</strong></p>
+                <p>Tasks Completed: 10/20</p>
+            </div>
 
-      <div class="card">
-        <h3>Tasks</h3>
-        <p>Data will be shown here to report progress.</p>
-      </div>
+            <div class="card">
+                <h3>Photography</h3>
+                <p>Progress: <strong>30%</strong></p>
+                <p>Tasks Completed: 3/10</p>
+            </div>
 
-      <div class="card">
-        <h3>Orders</h3>
-        <p>Data will be shown here to report progress.</p>
-      </div>
+            <div class="card">
+                <h3>Entertainment</h3>
+                <p>Progress: <strong>60%</strong></p>
+                <p>Tasks Completed: 6/10</p>
+            </div>
 
-      <div class="card">
-        <h3>Reports</h3>
-        <p>Data will be shown here to report progress.</p>
-      </div>
-    </section>
-  </main>
+            <div class="card">
+                <h3>Invitations</h3>
+                <p>Progress: <strong>40%</strong></p>
+                <p>Tasks Completed: 4/10</p>
+            </div>
 
-  <script src="scripts/scripts.js"></script>
+            <div class="card">
+                <h3>Logistics</h3>
+                <p>Progress: <strong>20%</strong></p>
+                <p>Tasks Completed: 2/10</p>
+            </div>
+        </section>
+
+        <!-- Placeholder for Future Charts / Graphs -->
+        <section class="tracking-graphs">
+            <h2>Graphical Overview</h2>
+            <p>Graphs and visual representation of progress will appear here once connected to real data.</p>
+        </section>
+    </main>
+
+<script>
+    // For now, this page uses static dummy data.
+    // Later, you can integrate real tracking data dynamically via JS or API.
+</script>
 </body>
 </html>
